@@ -1,1 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozinha do Noan | Casa da Gastronomia</title>
+    <style>
+        :root {
+            --primary-color: #d9381e;
+            --secondary-color: #2b2b2b;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --text-color: #444444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+       
+       header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        header nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: var(--primary-color);
+        }
+
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        
+        .tabs-container {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: 2px solid #ccc;
+            padding: 10px 25px;
+            margin: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 25px;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        
+        .video-section {
+            padding: 20px 0 60px 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        
+        .video-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        
+        .video-card.hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #666;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .video-card h3 {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .video-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        
+        .contact-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-section h2 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .contact-section p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #b32a15;
+        }
+
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <div class="container">
+            <h1>🍳 Cozinha do Noan: Sabor & Técnica</h1>
+            <nav>
+                <a href="#videos">Tutoriais</a>
+                <a href="#pedido">Sugerir Receita</a>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Aprenda a cozinhar com os nossos vídeos e recomendações</h2>
+            <p>Aqui você vai ver alguns vídeos sobre como cozinhar. se você gosta de gastronomia, então sinta-se em casa .</p>
+        </div>
+    </section>
+
+    
+    <div class="tabs-container" id="videos">
+        <button class="tab-btn active" onclick="filterVideos('tudo')">Tudo</button>
+        <button class="tab-btn" onclick="filterVideos('salgado')">Salgados</button>
+        <button class="tab-btn" onclick="filterVideos('doce')">Doces</button>
+        <button class="tab-btn" onclick="filterVideos('tipico')">Pratos Típicos</button>
+    </div>
+
+    
+    <section class="container video-section">
+        <div class="video-grid">
+          
+            
+            <div class="video-card" data-category="salgado">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/SOfv6z2hXp0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="category-tag">Salgado</span>
+                    <h3>O Hambúrguer Perfeito?</h3>
+                    <p>Aprenda a fazer o blend de carne ideal e o ponto perfeito para seu hambúrguer artesanal com Mohamad Hindi.</p>
+                </div>
+            </div>
+          
+            
+            <div class="video-card" data-category="doce">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/5F2L49L4X-k" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="category-tag">Doce</span>
+                    <h3>Pudim de Leite Condensado magnífico</h3>
+                    <p>O segredo definitivo para fazer aquele pudim super lisinho, cremoso e que derrete na boca.</p>
+                </div>
+            </div>
+
+            
+            <div class="video-card" data-category="tipico">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/7rXNskp18z8" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="category-tag">Pratos Típicos</span>
+                    <h3>Feijoada Brasileira - Completa e Tradicional</h3>
+                    <p>Como preparar uma feijoada brasileira autêntica, com tudo que precisa e o caldo bem saboroso.</p>
+                </div>
+            </div>
+
+            
+            <div class="video-card" data-category="salgado">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/z44q7hX_6y8" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="category-tag">Salgado</span>
+                    <h3>Arroz Soltinho de Respeito</h3>
+                    <p>Nunca mais erre o ponto do arroz. Dicas simples para fazer aquele arroz gostoso.</p>
+                </div>
+            </div>
+
+            
+            <div class="video-card" data-category="doce">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/P670u6Zepv4" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="category-tag">Doce</span>
+                    <h3>Brownie de Chocolate Delicioso</h3>
+                    <p>Receita rápida para conseguir aquela casquinha croque por cima e o interior bem denso e molhadinho.</p>
+                </div>
+            </div>
+
+            
+            <div class="video-card" data-category="tipico">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/6i3P9mP_Rto" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="category-tag">Pratos Típicos</span>
+                    <h3>Moqueca Baiana de Peixe</h3>
+                    <p>O passo a passo com azeite de dendê, leite de coco e coentro para trazer aquele sabor real da Bahia.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <section id="pedido" class="contact-section">
+        <div class="container form-container">
+            <h2>Não achou o que procurava, ou quer ver algo do seu gosto aqui?</h2>
+            <p>Envie uma mensagem sugerindo a receita ou técnica que você quer ver em vídeo aqui no site!</p>
+            
+            
+            <form action="https://formsubmit.co/cristopoliskin@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Novo Pedido de Receita!">
+                
+                <div class="form-group">
+                    <label for="name">Seu Nome:</label>
+                    <input type="text" id="name" name="name" required placeholder="Ex: João Silva">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Seu E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="Ex: joao@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Qual receita você quer aprender ou sugerir?</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Ex: Gostaria de um vídeo ensinando massa folhada artesanal..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Sugestão</button>
+            </form>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p>&copy; 2026 Sabores & Técnicas. Feito com paixão à gastronomia, por Noan Farias de A.C..</p>
+    </footer>
+
+    
+    <script>
+        function filterVideos(category) {
+            
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            
+            event.target.classList.add('active');
+
+            
+            const cards = document.querySelectorAll('.video-card');
+            
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (category === 'tudo' || cardCategory === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
 
